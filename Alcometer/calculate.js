@@ -1,7 +1,7 @@
 import { Text, View, Button, TextInput } from 'react-native';
 import { useEffect, useState } from 'react';
 import RadioForm from 'react-native-simple-radio-button';
-import styles from './styles.js'
+import style from './styles.js'
 
 
 export default function Calculate() {
@@ -58,34 +58,68 @@ export default function Calculate() {
     useEffect(() => {
         setBurningWeight(weight)
     }, [weight])
+
     let result = gramsLeft / (burningWeight * gender);
 
 
  
     console.log(gramsLeft)
     console.log(Math.round(result) * 2)
+
+    
+    if ((weight == 0 || weight < 0) || (count == 0 || count < 0) || hours < 0) {
+        result = 0
+    }
+    
     function printing() {
+
+        if (weight == 0 || weight < 0) {
+          const createAlert = () =>
+            Alert.alert(
+              "Incorrect weight",
+              "Enter a valid weight before calculating!",
+              [
+                {
+                  text: "Ok",
+                  onPress: () => console.log("Cancel Pressed"),
+                }
+              ]
+            );
+        createAlert;
+        setWeight(0);
+        }
         return result
+    }
+
+    function clear () {
+        setWeight(0)
+        setHours(0)
+        setCount(0)
     }
     return (
         <View>
-            <Text style={styles.texts}>Weight</Text>
+            <Text style={style.text}>Weight</Text>
             <TextInput value={weight} keyboardType="decimal-pad" onChangeText={weight => setWeight(weight)}></TextInput>
-            <Button onPress={decrementCount}>-</Button>
             <Text>Bottles:</Text>
-            <Text>{count}</Text>
-            <Button onPress={incrementCount}>+</Button>
-            <Button onPress={decrementHours}>-</Button>
+            <Text style={style.group}>
+                <Button style={style.smallButton} onPress={decrementCount}>-</Button>
+                <Text>{count}</Text>
+                <Button style={style.smallButton} onPress={incrementCount}>+</Button>
+            </Text>
             <Text>Hours:</Text>
-            <Text>{hours}</Text>
-            <Button onPress={incrementHours}>+</Button>
+            <Text style={style.group}>
+                <Button style={style.smallButton} onPress={decrementHours}> - </Button>
+                <Text>{hours}</Text>
+                <Button style={style.smallButton} onPress={incrementHours}>+</Button>
+            </Text>
             <RadioForm 
                 radio_props={options}
                 initial={0}
                 onPress={(value)=> checked = setChecked(value)}
             />
-            <Text style>{result.toFixed(2)}</Text>
-            <Button onPress={printing} title="Calculate"></Button>
+            <Text style={style.result}>{result.toFixed(2)}</Text>
+            <Button style={style.bigButton} onPress={printing} title="Calculate"></Button>
+            <Button style={style.bigButton} onPress={clear} title="Clear"></Button>
         </View>
   );
 

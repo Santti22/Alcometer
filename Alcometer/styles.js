@@ -1,30 +1,34 @@
 import { StyleSheet } from "react-native";
-export default function style() {
-    
-    const style = StyleSheet.create({
-        containerLight: {
-          backgroundColor: 'white',
-          flexDirection: 'row',
-          justifyContent: 'space-evenly',
-          alignItems: 'center',
-          backgroundColor: '#6804CD',
-          width: '100%',
-          height: 30,
-        },
+export default StyleSheet.create({
         containerDark: {
-            flexDirection: 'row',
-            justifyContent: 'space-evenly',
-            alignItems: 'center',
-            backgroundColor: '#6804CD',
-            width: '100%',
-            height: 30,
-            color: 'black',
-          },
+            backgroundColor: '#f59542',
+            width: 'device-width',
+            height: '100%' ,
+            paddingLeft: 20,
+            paddingRight: 20,
+        },
+
         text: {
           color: '#ffffff',
           fontWeight: 'bold',
         },
-      });
 
-      return style
-}
+        header: {
+          fontSize: 40,
+          fontWeight: "bold",
+          alignContent: 'center',
+          justifyContent: 'center',
+
+        },
+
+        smallButton: {
+          width: 30,
+          color: '#000',
+          backgroundColor: '#f59542'
+        },
+
+        bigButton: {
+          color: '#000',
+          backgroundColor: '#f59542'
+        }
+      });

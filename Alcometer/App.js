@@ -9,8 +9,9 @@ export default function App() {
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
 
+
   return (
-      <View style={style.containerLight}>
+      <View style={style.containerDark}>
         <Switch
           trackColor={{ false: "#767577", true: "#81b0ff" }}
           thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
@@ -18,7 +19,7 @@ export default function App() {
           onValueChange={toggleSwitch}
           value={isEnabled}
           />
-          <Text>Alcometer</Text>
+          <Text style={style.header}>Alcometer</Text>
           <Calculate/>
        </View>
     
